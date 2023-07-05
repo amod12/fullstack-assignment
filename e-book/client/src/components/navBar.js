@@ -47,11 +47,11 @@ const NavBar = () => {
       case 'register':
         navigate('/register');
         break;
-      case 'laptop':
-        navigate('/',{ state: { key: 'category', data: 'laptop' }});
+      case 'action':
+        navigate('/',{ state: { key: 'category', data: 'action' }});
         break; 
-      case 'food':
-        navigate('/',{ state: { key: 'category', data: 'food' }});
+      case 'drama':
+        navigate('/',{ state: { key: 'category', data: 'drama' }});
         break; 
         case 'cart':
           navigate('/cart');
