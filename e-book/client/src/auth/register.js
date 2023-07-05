@@ -2,10 +2,15 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { CustomButton } from "../components/customButton";
+import {toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { responseHandler } from "../utils/responseHandler";
+import { message } from 'antd'; 
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const usersSchema = Yup.object().shape({
@@ -51,6 +56,7 @@ const Register = () => {
   ];
   
   const [showPassword, setShowPassword] = useState(true)
+  const navigate = useNavigate();
  
   return (
     <>
@@ -70,6 +76,31 @@ const Register = () => {
                 confirmPassword: "",
               }}
               validationSchema={usersSchema}
+              onSubmit={async(values, { resetForm }) => {
+                const {confirmPassword, ...updatedValues} = values // removind confirmpassword from values
+                const requestOptions = {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(updatedValues),
+                };
+                try {
+                  const response = await fetch('http://localhost:3007/register', requestOptions)
+                  const data = await response.json()
+                  const notify = responseHandler(response, data.errorMsg)
+                  toast(notify)
+                  console.log(data.msg)
+                  if (data.isRegistered) {
+                    message.success(data.msg, [2])
+                    navigate('/')
+                  } else {
+                    message.error(data.errorMsg, [2])
+                  }
+                } catch (error) {
+                  toast.error('error',{position:toast.POSITION.TOP_CENTER});
+                }
+                resetForm({ values: '' })
+
+              }}
             >
            {({  errors, touched }) => (
               <Form>
@@ -96,7 +127,7 @@ const Register = () => {
             </Formik>
             <div className="">
                 <span>
-                  <br/> <Link to="/"> Already have an account Login..</Link>
+                  <br/> <Link to="/login"> Already have an account Login..</Link>
                 </span>
               </div>
       </div>
