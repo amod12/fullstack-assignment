@@ -10,6 +10,7 @@ import Cart from "./cart/cart";
 import Buy from "./sharedScreen/buy";
 import { useSelector } from "react-redux";
 import UserOrder from "./user/userOrder";
+import PageNotFound from "./sharedScreen/pageNotFound";
 
 
 
@@ -32,7 +33,8 @@ const AuthScreen=()=>{
     <Routes>
     <Route path="/register" element={<Register />} /> 
     <Route path="/" element={<Home/>} />
-    <Route path="*" element={<Login />} />
+    <Route path="*" element={<PageNotFound />} />
+    <Route path="/login" element={<Login />} />
 
   </Routes>
   )
@@ -88,6 +90,8 @@ const UserScreen=()=>{
     <Route path="/buy" element={<Buy itemPrice={itemPrice} setItemPrice={setItemPrice}/>} />
     <Route path="/cart" element={<Cart cart={cart} setCart={setCart} itemPrice={itemPrice} setItemPrice={setItemPrice} total={total}/>} />
     <Route path="/orders" element={<UserOrder />} />
+    <Route path="*" element={<PageNotFound />} />
+
 
   </Routes>
   )

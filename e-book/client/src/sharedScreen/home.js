@@ -9,7 +9,9 @@ import Search from '../components/searchBar';
 import Slider from './slider';
 
 
+
 function Home() {
+
   const location = useLocation();
   let items;
   let category;
@@ -20,7 +22,8 @@ function Home() {
     category = location.state.data;
   }
 
-  const {role} = useSelector(state=> state.user)
+  const {role, email} = useSelector(state=> state.user)
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true); 
@@ -43,9 +46,10 @@ function Home() {
   return (
     <>
     <div>
-         {<Button style={{marginTop: 50}} onClick={()=>showModal()} >Add Items</Button>}
-         <Search/>
+    {email !== '' && <Button style={{ marginTop: 40, marginLeft: 250 }} onClick={showModal}>Add Items</Button>}
       </div>
+    <Search/>
+
     <Slider/>
       
 

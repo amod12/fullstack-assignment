@@ -77,7 +77,7 @@ const NavBar = () => {
     onClick={({ key }) => handleClick(key)}
     items={[
       {label:<FontAwesomeIcon icon={faBars} ></FontAwesomeIcon>, key: 'bar'},
-      {label: <div ><img src={image}  style={{height:50, paddingTop:10,}} /></div> , key: 'img',  },
+      {label: <div ><img src={image}  style={{height:50, paddingTop:0,}} /></div> , key: 'img',  },
       {label: 'Home', key: 'home', },
       
       {label: 'Categories', key: 'categories', 

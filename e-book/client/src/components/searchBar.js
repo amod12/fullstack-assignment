@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { faSearch,} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../App.css"
+import "./styles.css";
 
 export default function Search() {
   const [value, setValue] = useState("");
@@ -32,10 +33,10 @@ export default function Search() {
     <div className="App">
       <div className="search-container ">
       <div className='search' >
-      <input type="search" className='search_box' placeholder='Search' style={{marginTop: -1}}
+      <input type="search" className='search_box' placeholder='Search' style={{marginTop: -67}}
        onChange={onChange}
       />
-      <FontAwesomeIcon icon={faSearch} className='search_icon' onClick={()=>navigate('/',{ state: { key: 'validItems', data: validItems }}) } />
+      <FontAwesomeIcon icon={faSearch} className='search_icon' style={{marginTop: -67}} onClick={()=>navigate('/',{ state: { key: 'validItems', data: validItems }}) } />
 
     </div>
         { validItems.length !== 0 && value !== ''?
@@ -48,9 +49,9 @@ export default function Search() {
                 onClick={() =>{navigate('/itemPage',  { state:item }); }  
               }
                 className="dropdown-row"
-                key={item.catagoryName}
+                key={item.title}
               >
-                {item.catagoryName}
+                {item.title}
               </div>
             ))}
         </div>

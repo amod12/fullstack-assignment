@@ -79,7 +79,6 @@ router.get('/items/:name', async(req, res) => {
 });
  
 router.get('/item/',async (req, res) => {
-  // const data = await Items.find({ catagoryName: {$regex : "^" + req.query.qSearch}});
   var regexp = new RegExp("^"+ req.query.qSearch);
   const data = await Items.find({ title: regexp});
 
