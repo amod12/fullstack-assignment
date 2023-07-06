@@ -9,6 +9,7 @@ import { message } from 'antd';
 import Cart from "./cart/cart";
 import Buy from "./sharedScreen/buy";
 import { useSelector } from "react-redux";
+import UserOrder from "./user/userOrder";
 
 
 
@@ -93,6 +94,8 @@ const UserScreen=()=>{
     <Route path="/itemPage" element={<ItemPage handleClick={handleClick} />} />
     <Route path="/buy" element={<Buy itemPrice={itemPrice} setItemPrice={setItemPrice}/>} />
     <Route path="/cart" element={<Cart cart={cart} setCart={setCart} itemPrice={itemPrice} setItemPrice={setItemPrice} total={total}/>} />
+    <Route path="/orders" element={<UserOrder />} />
+
   </Routes>
   )
 }
