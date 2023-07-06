@@ -7,8 +7,7 @@ import {toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {message } from 'antd'; 
 import { useLocation } from 'react-router-dom'
-
-
+import "../App.css"
 
 function Buy({itemPrice, setItemPrice}) {
   const usersSchema = Yup.object().shape({
@@ -51,7 +50,8 @@ function Buy({itemPrice, setItemPrice}) {
   const {address, name, email, phone, _id  }= useSelector(state=>state.user)
   
   return (
-      <div>    
+    <div className='container'>
+            <div className='formcenter'>    
             <Formik
               initialValues={{ 
                 name: name,
@@ -115,6 +115,7 @@ function Buy({itemPrice, setItemPrice}) {
               )}
             </Formik>
       </div>
+    </div>
   )
 }
 
