@@ -8,9 +8,10 @@ const ordersSchema = new mongoose.Schema(
       author: { type: String },
       isbn: { type: String },
       price: { type: Number },
-      description:{type: String},
       catagory:{type: String},
       status:{type: String},
+      quantity: { type: Number },
+
     },],  
     name:{type: String},
     userId:{type: String},
@@ -21,8 +22,6 @@ const ordersSchema = new mongoose.Schema(
     pickupDate:{type:String},
     pickupTime:{type:String},
     totalPrice: { type: Number },
-    quantity: { type: Number },
-
 
   },
   { collection: "orders" }

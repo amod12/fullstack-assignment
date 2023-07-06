@@ -1,12 +1,14 @@
 import React,{useState} from 'react';
 import { useEffect } from 'react';
-import "./cart.css";
+import ".//cart.css";
 
-const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total}) => {
+const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total }) => {
+    
     const addCart=(id)=>{
         const tempProductList = [...cart]
         tempProductList[id]['quantity']++
         setCart(tempProductList)
+        total();
       }
     
     const subCart=(id)=>{
@@ -18,24 +20,27 @@ const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total}) => {
         tempProductList[id]['quantity']--
         setCart(tempProductList)
         }
+        total();
       }
 
     
     
     const handleRemove = (d) => {
         const arr = cart.filter((item , id) => {
-            console.log(id)
            if(id !== d){
             return true
            }
         });
+        console.log(arr)
+
         setCart(arr);
         total();
-      };
 
+    };
+    
     useEffect(()=>{
         total();
-    }, [])
+    }, [cart])
 
   return (
     <article>
@@ -44,7 +49,7 @@ const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total}) => {
                 <div className="cart_box" key={item.id}>
                     <div className="cart_img">
                         <img src={item.image} />
-                        <p>{item.catagoryName}</p>
+                        <p>{item.title}</p>
                     </div>
                     <div>
                         <button onClick={()=>addCart(id)}> + </button>

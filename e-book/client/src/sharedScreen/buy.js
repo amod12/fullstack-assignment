@@ -9,7 +9,7 @@ import {message } from 'antd';
 import { useLocation } from 'react-router-dom'
 
 
-function Buy(props) {
+function Buy({itemPrice, setItemPrice}) {
   const usersSchema = Yup.object().shape({
     location: Yup.string()
       .min(1, "Too Short!")
@@ -50,9 +50,7 @@ function Buy(props) {
   const {state} = useLocation();
   const {address, name, email, phone, _id  }= useSelector(state=>state.user)
   
-
   return (
-    
       <div>    
             <Formik
               initialValues={{ 
@@ -73,8 +71,8 @@ function Buy(props) {
                       quantity: item.quantity 
                      }
                     }) , 
-                totalPrice : props.itemPrice     
-              }}
+                    totalPrice: itemPrice !== 0 ? itemPrice : state.reduce((total, item) => total + (item.price*item.quantity), 0)
+                  }}
               validationSchema={usersSchema}
               onSubmit={async(values) => { 
 
@@ -87,8 +85,10 @@ function Buy(props) {
                   const data = await res.json()
                   const notify = responseHandler(res, data.errorMsg)
                   toast(notify)
+                  
                   if (data) {
                     message.success(data.msg, [2])
+                    setItemPrice(0); 
                   } else {
                     message.error(data.errorMsg, [2])
                   }
