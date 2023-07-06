@@ -8,6 +8,9 @@ import { message } from 'antd';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
+import img from "../images/3.jpg";
+import "../App.css"
+
 
 
 const Login = () => {
@@ -45,7 +48,7 @@ const Login = () => {
                                     body: JSON.stringify(values),
                                 };
                                 
-                                const res = await fetch(`http://localhost:3007/login`, requestOptions);
+                                const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                                 const data = await res.json()
                                 if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
@@ -82,6 +85,7 @@ const Login = () => {
                     </div>
                     <div className="right-side">
                         <div className="img-box">
+                            <img src={img} alt="Logo" width={300} />
                             <div className="">
                                 <span><Link to='/register'>Create an account </Link></span>
                                 

@@ -33,19 +33,6 @@ const UserOrder = () => {
  });
 
 
- const triggerDelete = async(id)=>{
-  const requestOptions = {
-   method:"DELETE",
-   headers: { "Content-Type": "application/json" },
-   body: JSON.stringify({_id: id}),
- };
- const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`,requestOptions);
- if(res.status===200){
-   fetchAvailableItems()
-   message.success("Orders deleted successfully",[2])
- }
- }
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);

@@ -12,6 +12,7 @@ import { message } from 'antd';
 import { useNavigate } from "react-router-dom";
 
 
+
 const Register = () => {
   const usersSchema = Yup.object().shape({
     name: Yup.string()
@@ -44,6 +45,7 @@ const Register = () => {
       .required("Required")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
 
+    // role: Yup.string().required("Required"),
   });
   const registerFormFields = [
     {name: 'name',  placeholder: 'Name'},
@@ -55,9 +57,8 @@ const Register = () => {
     {name: 'confirmPassword',  placeholder: 'ConfirmPassword'},
   ];
   
-  const [showPassword, setShowPassword] = useState(true)
   const navigate = useNavigate();
- 
+  const [showPassword, setShowPassword] = useState(true)
   return (
     <>
     <div className='registerBackground'>  
@@ -65,7 +66,7 @@ const Register = () => {
       <div className="register-area">
       
         <div className="right-side1" >    
-            <h3>Create an account</h3>
+            <h3 style={{alignContent:"center" }}>WELCOME TO REGISTRATION</h3>
             <Formik
               initialValues={{
                 name: "",
@@ -77,14 +78,14 @@ const Register = () => {
               }}
               validationSchema={usersSchema}
               onSubmit={async(values, { resetForm }) => {
-                const {confirmPassword, ...updatedValues} = values // removind confirmpassword from values
+                const {confirmPassword, ...updatedValues} = values
                 const requestOptions = {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify(updatedValues),
                 };
                 try {
-                  const response = await fetch('http://localhost:3007/register', requestOptions)
+                  const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
                   const data = await response.json()
                   const notify = responseHandler(response, data.errorMsg)
                   toast(notify)
@@ -98,8 +99,6 @@ const Register = () => {
                 } catch (error) {
                   toast.error('error',{position:toast.POSITION.TOP_CENTER});
                 }
-                resetForm({ values: '' })
-
               }}
             >
            {({  errors, touched }) => (
@@ -127,7 +126,7 @@ const Register = () => {
             </Formik>
             <div className="">
                 <span>
-                  <br/> <Link to="/login"> Already have an account Login..</Link>
+                  <br/> <Link to="/"> Already have an account Login..</Link>
                 </span>
               </div>
       </div>
