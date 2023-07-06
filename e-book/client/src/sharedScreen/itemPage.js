@@ -19,6 +19,7 @@ function ItemPage({handleClick}) {
   else {
     navigate('/buy',  { state: [state] });  }
   }
+  
   return (
     <>
     <div className='container'>
@@ -41,11 +42,9 @@ function ItemPage({handleClick}) {
         onClick={checkIfLogedIn}
         className="flex-container"
       />
-        <CustomButton
-        name="Add to Cart"
-        onClick={()=>handleClick(state)}
-              
-      /></div>:
+       {email !== '' && (
+            <CustomButton name='Add to Cart' onClick={() => handleClick(state)} />
+          )}</div>:
       <div>
       <CustomButton
         name="Sold out"     

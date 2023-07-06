@@ -35,6 +35,8 @@ const AuthScreen=()=>{
     <Route path="/" element={<Home/>} />
     <Route path="*" element={<PageNotFound />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/itemPage" element={<ItemPage />} />
+
 
   </Routes>
   )
