@@ -41,14 +41,7 @@ const AuthScreen=()=>{
 // const AdminScreen=()=>{
 //   return(
 //     <Routes>
-//     <Route path="/register" element={<Register />} />
-//     <Route path="/items" element={<Items />} />
-//     <Route path="*" element={<PageNotFound />} />
-//     <Route path="/profile" element={<Profile />} />
-//     <Route path="/login" element={<Login />} />
-//     <Route path="/itemPage" element={<ItemPage />} />
-//     <Route path="/" element={<AdminDashboard />} />
-//     <Route path="/buy" element={<Buy />} />
+//    
 //   </Routes>
 //   )
 // }

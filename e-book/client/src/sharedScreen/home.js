@@ -6,6 +6,7 @@ import Card from '../components/card';
 import AddItems from './addItems';
 import { useLocation } from 'react-router-dom' 
 import Search from '../components/searchBar';
+import Slider from './slider';
 
 
 function Home() {
@@ -41,10 +42,12 @@ function Home() {
     }, [items, category])
   return (
     <>
-    <Search/>
-      <div>
+    <div>
          {<Button onClick={()=>showModal()} >Add Items</Button>}
+         <Search/>
       </div>
+    <Slider/>
+      
 
     <Modal
         title="Add Items"
