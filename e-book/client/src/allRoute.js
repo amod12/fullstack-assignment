@@ -7,6 +7,7 @@ import NavBar from './components/navBar';
 import ItemPage from './sharedScreen/itemPage';
 import { message } from 'antd'; 
 import Cart from "./cart/cart";
+import Buy from "./sharedScreen/buy";
 
 
 const AllRoute = () => {
@@ -49,6 +50,7 @@ const AllRoute = () => {
         {/* passing function handleClick as props */}
         <Route path="/itemPage" element={<ItemPage handleClick={handleClick} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} itemPrice={itemPrice} setItemPrice={setItemPrice} total={total}/>} />
+        <Route path="/buy" element={<Buy itemPrice={itemPrice}/>} />
 
       </Routes>
     </div>

@@ -8,11 +8,13 @@ function ItemPage({handleClick}) {
 
   const {state} = useLocation();
   const { email }= useSelector(state=>state.user)
+  
    const navigate = useNavigate()
   const checkIfLogedIn=()=>{
   if (email === '') {
     navigate('/login'); 
   } 
+  
   else {
     navigate('/buy',  { state: [state] });  }
   }
@@ -32,17 +34,25 @@ function ItemPage({handleClick}) {
       <h3>{state.description}</h3> 
 
     </div>
-     
-    <CustomButton
+   {
+    state.status == 'Available'?<div>
+      <CustomButton
         name="Buy"
         onClick={checkIfLogedIn}
         className="flex-container"
       />
-    <CustomButton
+        <CustomButton
         name="Add to Cart"
         onClick={()=>handleClick(state)}
               
-      />
+      /></div>:
+      <div>
+      <CustomButton
+        name="Sold out"     
+        />
+        </div>
+   }
+    
     </>
   )
 }
