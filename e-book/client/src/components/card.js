@@ -33,13 +33,13 @@ const Card = (props) => {
             {props.item.catagoryName}
             {props.role === 'admin' ? <AddItems item={props.item} isAdminEdit={true}/> : ""}
          </Modal>
-        <div>
+        <div style={{width: 200}}>
          <div onClick={()=> nextPage()} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
             <div className='categoryName'> 
             <img src={props.item.image} alt="Logo" width={'90%'} style={{margin:'5%'}} /><br/> 
-            <div style={{margin:'5%'}} >{props.item.catagoryName } <br/>  </div>
+            <div style={{margin:'5%'}} >{props.item.title } by {props.item.author }<br/>  </div>
             <div style={{margin:'5%'}} >{props.item.price } <br/>  </div>
-            
+            <div style={{margin:'5%'}} >{props.item.status } <br/>  </div>
             </div>
          </div >
          <div style={{marginLeft:'7%'}} >
