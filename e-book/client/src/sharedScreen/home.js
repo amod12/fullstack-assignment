@@ -43,7 +43,7 @@ function Home() {
   return (
     <>
     <div>
-         {<Button onClick={()=>showModal()} >Add Items</Button>}
+         {<Button style={{marginTop: 50}} onClick={()=>showModal()} >Add Items</Button>}
          <Search/>
       </div>
     <Slider/>
