@@ -52,9 +52,8 @@ function Buy(props) {
   
 
   return (
-    <div className='container'>
-    {console.log(state)}
-      <div className='formcenter'>    
+    
+      <div>    
             <Formik
               initialValues={{ 
                 name: name,
@@ -117,7 +116,6 @@ function Buy(props) {
               )}
             </Formik>
       </div>
-    </div>
   )
 }
 
