@@ -78,5 +78,21 @@ router.get('/items/:name', async(req, res) => {
   }
 });
  
+router.get('/item/',async (req, res) => {
+  // const data = await Items.find({ catagoryName: {$regex : "^" + req.query.qSearch}});
+  var regexp = new RegExp("^"+ req.query.qSearch);
+  const data = await Items.find({ title: regexp});
+
+  try {
+    if (data) {
+      res.status(200).json({
+        validItemOptions: data
+    })    } else {
+      res.status(404).json({ error: 'Resource not found' });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;

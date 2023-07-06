@@ -10,7 +10,7 @@ const ordersSchema = new mongoose.Schema(
       price: { type: Number },
       catagory:{type: String},
       status:{type: String},
-      quantity: { type: Number },
+      quantity: { type: mongoose.Schema.Types.Mixed },
 
     },],  
     name:{type: String},

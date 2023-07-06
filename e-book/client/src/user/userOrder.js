@@ -18,8 +18,8 @@ const UserOrder = () => {
     splitOrder.push({
        title: [order][0].title,
        isbn: [order][0].isbn,
-       quantity: [order][0].quantity,
-       price: [order][0].price,
+       quantity: [order][0].quantity || 1,
+       price: [order][0].price *([order][0].quantity || 1),
        name: obj.name,
        userId: obj.userId,
        phone: obj.phone,
@@ -32,21 +32,19 @@ const UserOrder = () => {
    });
  });
 
-console.log(splitOrder);
 
-  const triggerDelete = async(id)=>{
-   const requestOptions = {
-    method:"DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({_id: id}),
-  };
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`,requestOptions);
-  
-  if(res.status===200){
-    fetchAvailableItems()
-    message.success("Orders deleted successfully",[2])
-  }
-  }
+ const triggerDelete = async(id)=>{
+  const requestOptions = {
+   method:"DELETE",
+   headers: { "Content-Type": "application/json" },
+   body: JSON.stringify({_id: id}),
+ };
+ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`,requestOptions);
+ if(res.status===200){
+   fetchAvailableItems()
+   message.success("Orders deleted successfully",[2])
+ }
+ }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -94,32 +92,7 @@ const columns = [
     title: 'Quantity',
     dataIndex: 'quantity',
   },
-  {
-    title: 'Actions',
-    key: 'key',
-    dataIndex: 'key',
-    render: (_, item) => (
-      <>
-      <Button onClick={()=>setIdAndShowModal(item)}>
-       {role==='admin'?'Accept':'Edit'}
-     </Button>
-     <Popconfirm
-  title="Delete the task"
-  description="Are you sure to delete this task?"
-  okText="Yes"
-  cancelText="No"
-  onConfirm={()=>triggerDelete(item._id)}
->
-  <Button>
-  Delete
-</Button>
-</Popconfirm>
-     {/* <Button onClick={()=> triggerDelete(item._id)}>
-       {'Delete'}
-     </Button> */}
-      </>
-    ),
-  },
+ 
 ]
 
   const fetchAvailableItems= ()=>{

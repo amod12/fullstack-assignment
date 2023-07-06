@@ -40,7 +40,6 @@ function Buy({itemPrice, setItemPrice}) {
     {name: 'address',  placeholder: 'Address'},
     {name: 'phone',  placeholder: 'Phone'},
     {name: 'email',  placeholder: 'Email'},
-    {name: 'quantity', placeholder: 'Quantity'},
     {name: 'location', placeholder: 'Location'},
     {name: 'pickupDate', placeholder: 'PickupDate'},
     {name: 'pickupTime', placeholder: 'PickupTime'},
@@ -59,7 +58,6 @@ function Buy({itemPrice, setItemPrice}) {
                 email: email,
                 phone: phone,
                 userId: _id,
-                quantity:  1,
                 orders: state?.map((item)=>{
                     return {
                       title : item.title,
@@ -68,10 +66,10 @@ function Buy({itemPrice, setItemPrice}) {
                       catagory: item.catagory,
                       price: item.price,
                       image: item.image,
-                      quantity: item.quantity 
+                      quantity: item.quantity !== null ? item.quantity : 1
                      }
                     }) , 
-                    totalPrice: itemPrice !== 0 ? itemPrice : state.reduce((total, item) => total + (item.price*item.quantity), 0)
+                    totalPrice: itemPrice !== 0 ? itemPrice : state.reduce((total, item) => total + (item.price), 0)
                   }}
               validationSchema={usersSchema}
               onSubmit={async(values) => { 

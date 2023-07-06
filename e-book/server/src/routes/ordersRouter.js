@@ -41,23 +41,18 @@ router.post("/orders",  async (req, res) => {
 
   router.delete("/orders", async (req, res) => {
     try {
-      const totalOrdersLength = await Orders.find()
-      if(req.query.userId){
-        const data = await Orders.find({"userId":req.query.userId})
-        res.status(200).json({
-          orders: data
-      })
-      }else{
-            res.status(200).json({
-                orders:data,
-                totalOrdersCount: totalOrdersLength.length
-            })
+      const data = await Orders.findByIdAndDelete(req.body._id)
+      if(data){
+        res.status(200).json({msg: 'deleted successfully'})
       }
-     
-  }  catch (err) {
+      else{
+        res.status(500).json({msg:"something went wrong"})
+      }
+    } catch (err) {
         console.log(err);
     }
     });
+
 
     router.put("/orders", async (req, res) => {
       try {

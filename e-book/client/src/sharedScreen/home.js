@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux';
 import Card from '../components/card';
 import AddItems from './addItems';
 import { useLocation } from 'react-router-dom' 
+import Search from '../components/searchBar';
 
 
 function Home() {
@@ -40,6 +41,7 @@ function Home() {
     }, [items, category])
   return (
     <>
+    <Search/>
       <div>
          {<Button onClick={()=>showModal()} >Add Items</Button>}
       </div>
