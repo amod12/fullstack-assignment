@@ -47,7 +47,8 @@ function Buy({itemPrice, setItemPrice}) {
   const {address, name, email, phone, _id  }= useSelector(state=>state.user)
   
   return (
-      <div>    
+    <div className='container'>
+        <div className='formcenter'>    
             <Formik
               initialValues={{ 
                 name: name,
@@ -105,12 +106,14 @@ function Buy({itemPrice, setItemPrice}) {
                     <br />
                   </div>
                 ))}
-                  <CustomButton name="Submit" type="submit" />
+                  Your Total Price is {itemPrice !== 0 ? itemPrice : state.reduce((total, item) => total + item.price, 0)}                  <CustomButton name="Submit" type="submit" />
                 </Form>
                 </div>
               )}
             </Formik>
+      
       </div>
+    </div>
   )
 }
 
