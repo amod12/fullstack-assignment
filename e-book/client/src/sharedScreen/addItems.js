@@ -23,7 +23,7 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
 
     isbn: Yup.string()
       .min(13, "Too Short!")
-      .max(13, "Too Long!")
+      .max(14, "Too Long!")
       .required("13 number Required"),
 
     price: Yup.string()
@@ -43,7 +43,7 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
 
     description: Yup.string()
     .min(2, "Too Short!")
-    .max(100, "Too Long!")
+    .max(1000, "Too Long!")
     .required("Required"),
   });
   
