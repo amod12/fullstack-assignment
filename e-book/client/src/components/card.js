@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Card = (props) => {
    const navigate = useNavigate()
    const [isModalOpen, setIsModalOpen] = useState(false)
-   
+
    const triggerDelete = async()=>{
       const requestOptions = {
          method:"DELETE",
@@ -33,21 +33,16 @@ const Card = (props) => {
             {props.item.catagoryName}
             {props.role === 'admin' ? <AddItems item={props.item} isAdminEdit={true}/> : ""}
          </Modal>
-        <div style={{width: 200}}>
-         <div onClick={()=> nextPage()} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
-            <div className='categoryName'> 
+        <div style={{width: 300}}>
+         <div onClick={()=> nextPage()} className='category'id='userCardTheme'>
             <img src={props.item.image} alt="Logo" width={'90%'} style={{margin:'5%'}} /><br/> 
-            <div style={{margin:'5%'}} >{props.item.title } by {props.item.author }<br/>  </div>
-            <div style={{margin:'5%'}} >{props.item.price } <br/>  </div>
-            <div style={{margin:'5%'}} >{props.item.status } <br/>  </div>
-            </div>
+            <div style={{ color: 'black' }}>{props.item.title} by {props.item.author}<br/></div>
+            <div style={{ color: 'black' }} >{props.item.price } <br/>  </div>
+            <div style={{ color: 'black' }} >{props.item.status } <br/>  </div>
          </div >
-         <div style={{marginLeft:'7%'}} >
-         {props.role === 'admin' ?  <button onClick={() => setIsModalOpen(true) }>Edit</button>: ''}
-      <span style={{marginLeft:'55%', padding:"10px"}}>   {props.role === 'admin' ?  <button onClick={() => triggerDelete()}>Delete</button>: ''}
+         <span style={{marginLeft:'55%', padding:"10px"}}>   {props.role === 'user' ?  <button onClick={() => triggerDelete()}>Delete</button>: ''}
       </span>
-         </div>
-         </div>
+         </div >
       </>
    )
 }

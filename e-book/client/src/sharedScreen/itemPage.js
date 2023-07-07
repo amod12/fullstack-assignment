@@ -31,7 +31,7 @@ function ItemPage({handleClick}) {
       <h2>Price: {state.price}</h2> 
       <h2>Status:{state.status}</h2> 
       <h2>Isbn:{state.isbn}</h2> 
-      <h3>Category:{state.category}</h3> 
+      <h3>Catagory:{state.catagory}</h3> 
       <h3>Description: {state.description}</h3> 
 
     </div>
